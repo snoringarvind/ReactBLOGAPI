@@ -1,0 +1,11 @@
+.Navigation {
+  display: flex;
+  justify-content: space-around;
+  background-color: black;
+  padding: 10px;
+}
+
+.nav-links {
+  text-decoration: none;
+  color: white;
+}

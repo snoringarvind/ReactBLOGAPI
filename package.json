@@ -1,0 +1,28 @@
+{
+  "name": "react-BLOGAPI",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www",
+    "serverstart": "DEBUG=react-BLOGAPI:* npm run devstart"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "express-validator": "^6.9.2",
+    "http-errors": "~1.6.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.11",
+    "morgan": "~1.9.1",
+    "passport-jwt": "^4.0.0",
+    "pug": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.17.0",
+    "nodemon": "^2.0.7"
+  }
+}

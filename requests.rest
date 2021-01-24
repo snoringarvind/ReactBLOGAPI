@@ -1,0 +1,22 @@
+PUT http://localhost:3000/blogs/6001dc5c9d211c481bdca8cc
+Content-Type: application/json
+
+{
+    "title": "I am SPideyyyy!!",
+    "content": "It was wonderful and yayayaya!!"
+}
+
+###
+
+POST http://localhost:3000/blogs
+Content-Type: application/json
+
+{
+  "title":"Hello",
+  "content":"I am good!!"  
+}
+
+###
+
+GET http://localhost:3000/blogs
+
