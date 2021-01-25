@@ -1,0 +1,69 @@
+.Detail {
+  margin: 20px;
+}
+
+.title {
+  color: black;
+  font-size: 1.3rem;
+  font-weight: 450;
+  font-style: italic;
+  font-family: cursive;
+  text-decoration: underline;
+}
+
+.blog {
+  box-shadow: 1px 1px 5px lightgray, -1px -1px 5px lightgray,
+    1px 1px 5px lightgray, -1px -1px 5px lightgray;
+
+  border-radius: 4px;
+  padding: 20px;
+  background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow: hidden;
+  word-break: keep-all;
+  text-overflow: ellipsis;
+
+  margin-bottom: 30px;
+}
+
+.content {
+  text-indent: 30px;
+  margin: 10px 20px;
+  text-align: justify;
+  color: rgb(48, 48, 48);
+}
+
+.update-btn,
+.delete-btn {
+  display: inline-block;
+}
+.update-btn button,
+.delete-btn button {
+  margin: 20px;
+  font-size: 1rem;
+  padding: 8px 14px;
+  font-weight: 540;
+  color: white;
+  background-color: blue;
+  border: 1px solid white;
+  outline: 1px solid blue;
+  border-radius: 3px;
+}
+
+.delete-btn button {
+  background-color: red;
+  outline: 1px solid red;
+}
+
+.comments {
+  margin: 5px;
+}
+
+.comments-container {
+  background-color: rgb(112, 112, 112);
+  /* border: 1px solid; */
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 4px;
+}

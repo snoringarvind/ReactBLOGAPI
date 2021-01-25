@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./CommentForm.css";
 
 const CommentForm = ({
   comment,
@@ -54,7 +55,7 @@ const CommentForm = ({
       <form>
         <div className="form-group">
           <label htmlFor="comment">Comment:</label>
-          <input
+          <textarea
             type="text"
             name="comment"
             id="comment"

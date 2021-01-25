@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import uniqid from "uniqid";
 import CommentForm from "./CommentForm";
 import CommentDisplay from "./CommentDisplay";
+import "./Detail.css";
 
 const Detail = () => {
   const [blogDetail, setblogDetail] = useState("");
@@ -72,7 +73,7 @@ const Detail = () => {
             <button>Update</button>
           </Link>
         </div>
-        <div className="update-btn">
+        <div className="delete-btn">
           <Link to={`/blog/${blogDetail._id}/delete`}>
             <button>Delete</button>
           </Link>
@@ -98,20 +99,22 @@ const Detail = () => {
 
       {!commentsLoading &&
         (comment.length > 0 ? (
-          <div className="comments">
-            {comment.map((value, index) => {
-              return (
-                <CommentDisplay
-                  key={uniqid()}
-                  comment={value}
-                  index={index}
-                  params={params}
-                  gotComments={gotComments}
-                  setGotComments={setGotComments}
-                  setCommentsLoading={setCommentsLoading}
-                />
-              );
-            })}
+          <div className="comments-container">
+            <div className="comments">
+              {comment.map((value, index) => {
+                return (
+                  <CommentDisplay
+                    key={uniqid()}
+                    comment={value}
+                    index={index}
+                    params={params}
+                    gotComments={gotComments}
+                    setGotComments={setGotComments}
+                    setCommentsLoading={setCommentsLoading}
+                  />
+                );
+              })}
+            </div>
           </div>
         ) : (
           <div>No comments on this blog.</div>

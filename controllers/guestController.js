@@ -29,7 +29,6 @@ exports.signup_post = [
     const errors = validationResult(req);
 
     const user = new User({
-      admin: true,
       fname: req.body.fname,
       lname: req.body.lname,
       email: req.body.email,

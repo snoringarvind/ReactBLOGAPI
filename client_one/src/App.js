@@ -1,9 +1,9 @@
 import "./App.css";
 import { BlogsContext } from "./Components/Context";
 import { useContext } from "react";
-import Login from "./Components/Login";
-import List from "./Components/List";
-import Home from "./Components/Home";
+import Login from "./Components/LoginPage/Login";
+import List from "./Components/HomePage/List";
+import Home from "./Components/HomePage/Home";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 function App() {

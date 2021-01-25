@@ -1,0 +1,35 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid; */
+  margin-top: 10%;
+}
+
+.Login {
+  background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+  /* border: 1px solid; */
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 4px lightgray;
+}
+
+#username,
+#password {
+  font-size: 1.1rem;
+  width: 100%;
+  padding: 10px;
+}
+
+.form-group label {
+  font-size: 1.1rem;
+  font-weight: 450;
+}
+
+.login-btn {
+  background-color: blue;
+  color: white;
+  border: none;
+  font-size: 1.1rem;
+  padding: 10px 25px;
+  border-radius: 5px;
+}

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 import uniqid from "uniqid";
+import "./List.css";
 
 const List = () => {
   const [blogList, setBlogList] = useState([]);
@@ -39,10 +40,14 @@ const List = () => {
       for (let i = 0; i < blogList.length; i++) {
         let x = (
           <div className="card" key={uniqid()}>
-            <Link to={`/blog/${blogList[i]._id}`}>
-              <div className="title">{blogList[i].title}</div>
-              <div className="content">{blogList[i].content}</div>
-            </Link>
+            <div className="card-border">
+              <Link to={`/blog/${blogList[i]._id}`} className="card-link">
+                <div className="title">{blogList[i].title}</div>
+                <div className="content list-content">
+                  {blogList[i].content}
+                </div>
+              </Link>
+            </div>
           </div>
         );
         arr.push(x);

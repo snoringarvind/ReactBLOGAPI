@@ -1,0 +1,34 @@
+.comment-card {
+  /* border: 1px solid; */
+  /* padding: 20  px; */
+  background-color: rgb(238, 238, 238);
+  padding: 20px;
+  border-radius: 4px;
+  margin: 10px;
+  /* box-shadow: 1px 1px 5px black; */
+  position: relative;
+}
+
+.user {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: black;
+}
+
+.comment {
+  text-indent: 25px;
+  color: black;
+}
+
+.delete-comment-btn {
+  position: absolute;
+  top: 13%;
+  right: 2%;
+  cursor: pointer;
+}
+
+.delete-comment-btn ::-moz-focus-inner {
+  display: block;
+  background-color: tomato;
+  transform: scale(3, 3);
+}

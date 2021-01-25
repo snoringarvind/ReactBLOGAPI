@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import Form from "./Form";
+import Form from "../Form/Form";
+import "../Form/Form.css";
 
 const Update = () => {
   const params = useParams();

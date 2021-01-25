@@ -1,15 +1,16 @@
 import React, { useContext } from "react";
 import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import List from "./List";
-import Navigation from "./Navigation";
-import AuthButton from "./AuthButton";
-import Login from "./Login";
-import { BlogsContext } from "./Context";
-import Logout from "./Logout";
-import Detail from "./Detail";
-import Update from "./Update";
-import Create from "./Create";
-import Delete from "./Delete";
+import Navigation from "../Navigation";
+import AuthButton from "../AuthButton";
+import Login from "../LoginPage/Login";
+import { BlogsContext } from "../Context";
+import Logout from "../Logout";
+import Detail from "../DetailPage/Detail";
+import Update from "../UpdatePage/Update";
+import Create from "../CreatePage/Create";
+import Delete from "../DeletePage/Delete";
+import "./Home.css";
 
 const Home = () => {
   const { isAuthValue } = useContext(BlogsContext);
@@ -18,7 +19,12 @@ const Home = () => {
   return (
     <div className="Home">
       <Router>
-        {isAuth && <Navigation />}
+        <div className="Navigation">
+          {/* call saare honge ismein */}
+          {isAuth && <Navigation to="/blogs" label="Blogs" />}
+          {isAuth && <Navigation to="/create" label="Create" />}
+          {isAuth && <Navigation to="/logout" label="Logout" />}
+        </div>
         <AuthButton />
         <Switch>
           {isAuth ? (

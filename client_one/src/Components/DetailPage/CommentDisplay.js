@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import "./CommentDisplay.css";
 
 const CommentDisplay = ({
   comment,
@@ -33,8 +34,8 @@ const CommentDisplay = ({
     <div className="comment-card">
       <div className="user">{comment.user.username}</div>
       <div className="comment">{comment.comment}</div>
-      <div className="delete-comment-btn">
-        <button onClick={deleteHandler}>Delete</button>
+      <div className="delete-comment-btn" onClick={deleteHandler}>
+        &#10060;
       </div>
     </div>
   );

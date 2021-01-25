@@ -59,37 +59,39 @@ const Form = ({ state, setState, method, url }) => {
   };
 
   return (
-    <div className="Form">
-      <form>
-        <div className="form-group">
-          <label htmlFor="title">Blog Title:</label>
-          <input
-            type="text"
-            name="title"
-            id="title"
-            placeholder="Enter your blog title"
-            value={state.title}
-            onChange={(e) => changeHandler(e)}
-          />
-        </div>
+    <div className="form-container">
+      <div className="Form">
+        <form>
+          <div className="form-group">
+            <label htmlFor="title">Blog Title:</label>
+            <input
+              type="text"
+              name="title"
+              id="title"
+              placeholder="Enter your blog title"
+              value={state.title}
+              onChange={(e) => changeHandler(e)}
+            />
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="content">Blog Content:</label>
-          <textarea
-            name="content"
-            id="content"
-            placeholder="Enter your blog content"
-            value={state.content}
-            onChange={(e) => changeHandler(e)}
-          />
-        </div>
+          <div className="form-group">
+            <label htmlFor="content">Blog Content:</label>
+            <textarea
+              name="content"
+              id="content"
+              placeholder="Enter your blog content"
+              value={state.content}
+              onChange={(e) => changeHandler(e)}
+            />
+          </div>
 
-        <div className="error">{displayError()}</div>
+          <div className="error">{displayError()}</div>
 
-        <button className="submit-btn" onClick={submitHandler}>
-          {loadingBtn ? "Submitting..." : "CreateBLog"}
-        </button>
-      </form>
+          <button className="submit-btn" onClick={submitHandler}>
+            {loadingBtn ? "Submitting..." : "CreateBLog"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

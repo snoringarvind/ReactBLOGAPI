@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import { useRouteMatch } from "react-router-dom";
 
 export const BlogsContext = createContext();
 
@@ -50,8 +51,8 @@ export const BlogsProvider = ({ children }) => {
       <BlogsContext.Provider
         value={{
           isAuthValue: [isAuth, setIsAuth],
-          jwtData: [jwtData, setJwtData],
-          loginError: [loginError, setLoginError],
+          jwtDataValue: [jwtData, setJwtData],
+          loginErrorValue: [loginError, setLoginError],
         }}
       >
         {loading && "loading...."}

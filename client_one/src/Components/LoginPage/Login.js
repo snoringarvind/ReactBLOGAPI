@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import uniqid from "uniqid";
 import { Redirect, useHistory, useLocation } from "react-router-dom";
+import "./Login.css";
 
 const Login = () => {
   const [state, setState] = useState({ username: "", password: "" });
@@ -58,35 +59,37 @@ const Login = () => {
     return <Redirect to="/blogs" />;
   };
   return (
-    <div className="Login">
-      <h1 className="head">Login Page</h1>
-      <form>
-        <div className="form-group">
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            placeholder="Enter username"
-            name="username"
-            onChange={(e) => changeHandler(e)}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password:</label>
-          <input
-            type="text"
-            id="password"
-            placeholder="Enter Password"
-            name="password"
-            onChange={(e) => changeHandler(e)}
-          />
-        </div>
-        <div className="errors">{displayError()}</div>
-        <button className="submit-btn" type="submit" onClick={submitHandler}>
-          {loading ? "Loging-in" : "Login"}
-        </button>
-      </form>
-      {isAuth && redirect_user()}
+    <div className="login-container">
+      <div className="Login">
+        <h1 className="head">Login To Continue.</h1>
+        <form>
+          <div className="form-group">
+            <label htmlFor="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              placeholder="Enter username"
+              name="username"
+              onChange={(e) => changeHandler(e)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password:</label>
+            <input
+              type="text"
+              id="password"
+              placeholder="Enter Password"
+              name="password"
+              onChange={(e) => changeHandler(e)}
+            />
+          </div>
+          <div className="errors">{displayError()}</div>
+          <button className="login-btn" type="submit" onClick={submitHandler}>
+            {loading ? "Loging-in" : "Login"}
+          </button>
+        </form>
+        {isAuth && redirect_user()}
+      </div>
     </div>
   );
 };
