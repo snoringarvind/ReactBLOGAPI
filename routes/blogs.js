@@ -93,6 +93,12 @@ router.delete(
   adminController.comment_delete
 );
 
+//delete comment guest
+router.delete(
+  "/blog/:id/comment/:commentid/guest",
+  utils.verifyJWT,
+  guestController.comment_delete
+);
 //get detail
 router.get("/blog/:id", guestController.blog_detail_get);
 

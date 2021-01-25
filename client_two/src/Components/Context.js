@@ -11,26 +11,30 @@ export const BlogsProvider = ({ children }) => {
 
   //when the function returns the value, loading is set to false
   const [loading, setLoading] = useState(true);
+  // console.log(loading);
 
   const axios_isAuth = async () => {
     const jwt = JSON.parse(localStorage.getItem("jwtData"));
+    // console.log(jwt);
 
     if (jwt) {
       try {
         const headers = { authorization: `Bearer ${jwt.jwt.token}` };
         const response = await axios({
           method: "POST",
-          url: "http://localhost:3000/api/blogs/is-admin-verified",
+          url: "http://localhost:3000/api/blogs/is-guest-verified",
           data: "",
           headers: headers,
         });
+        // console.log(response);
         setJwtData(response);
         setLoginError(false);
         setIsAuth(true);
         setLoading(false);
+        // console.log(response);
       } catch (err) {
         console.log("context=", err);
-        setLoginError(err.message);
+        setLoginError({ Error: err.message });
         setIsAuth(false);
         setLoading(false);
       }
@@ -39,15 +43,18 @@ export const BlogsProvider = ({ children }) => {
       setLoginError({ Errors: ["Couldn't find the jwt token"] });
       setIsAuth(false);
       setLoading(false);
+      // window.location.reload();
     }
   };
 
   useEffect(() => {
     axios_isAuth();
   }, []);
+
   const displayError = () => {
     return <div className="error">{loginError}</div>;
   };
+
   return (
     <div className="Context">
       <BlogsContext.Provider

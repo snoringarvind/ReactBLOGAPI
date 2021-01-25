@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import "./CommentDisplay.css";
 
@@ -10,6 +10,8 @@ const CommentDisplay = ({
   setGotComments,
   setCommentsLoading,
 }) => {
+  const [error, setError] = useState("");
+
   const deleteHandler = async (e) => {
     e.preventDefault();
     const jwt = JSON.parse(localStorage.getItem("jwtData"));
@@ -27,16 +29,26 @@ const CommentDisplay = ({
       setCommentsLoading(true);
     } catch (err) {
       console.log("CommentDisplay=", err.message);
+      setError(err.message);
     }
   };
 
+  const displayError = () => {
+    return <div className="error">{error}</div>;
+  };
   return (
     <div className="comment-card">
-      <div className="user">{comment.user.username}</div>
-      <div className="comment">{comment.comment}</div>
-      <div className="delete-comment-btn" onClick={deleteHandler}>
-        &#10060;
-      </div>
+      {error ? (
+        displayError()
+      ) : (
+        <>
+          <div className="user">{comment.user.username}</div>
+          <div className="comment">{comment.comment}</div>
+          <div className="delete-comment-btn" onClick={deleteHandler}>
+            &#10060;
+          </div>
+        </>
+      )}
     </div>
   );
 };

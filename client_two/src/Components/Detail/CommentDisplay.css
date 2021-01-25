@@ -10,13 +10,15 @@
 }
 
 .comment-card .user {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   font-weight: 500;
   color: black;
+  margin-bottom: 10px;
 }
 
 .comment-card .comment {
-  text-indent: 25px;
+  font-size: 1.1rem;
+  /* text-indent: 25px; */
   color: black;
 }
 

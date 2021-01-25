@@ -39,11 +39,22 @@ exports.signup_post = [
     if (!errors.isEmpty()) {
       return res.json(errors);
     } else {
-      user.save((err) => {
-        if (err) {
-          return res.json(err);
+      User.findOne({ username: req.body.username }, (err, theUser) => {
+        console.log(theUser);
+        if (err) return res.status(500).json({ msg: err.message });
+        if (theUser != null) {
+          return res.status(406).json({
+            msg:
+              "A user with this username already exists. Please chose a different username.",
+          });
         } else {
-          return res.json(user);
+          user.save((err) => {
+            if (err) {
+              return res.json({ msg: err.message });
+            } else {
+              return res.json(user);
+            }
+          });
         }
       });
     }
@@ -52,7 +63,7 @@ exports.signup_post = [
 
 exports.blog_detail_get = (req, res, next) => {
   Blog.findById(req.params.id).exec((err, result) => {
-    if (err) return res.json(err);
+    if (err) return res.json({ msg: err.message });
     if (result == null) return res.status(401).json({ msg: "no blog found" });
     else {
       return res.json(result);
@@ -65,7 +76,7 @@ exports.comment_get = (req, res, next) => {
     .populate("user")
     .exec((err, result) => {
       console.log(result);
-      if (err) return res.status(500).json(err);
+      if (err) return res.status(500).json({ msg: err.message });
       if (result.length == 0) {
         return res.status(200).json({ msg: "no comments found" });
       }
@@ -93,7 +104,7 @@ exports.comment_create_post = [
       res.status(400).json(errors.array());
     } else {
       comment.save((err) => {
-        if (err) return res.json(err);
+        if (err) return res.json({ msg: err.message });
         return res.json(comment);
       });
     }
@@ -101,9 +112,7 @@ exports.comment_create_post = [
 ];
 
 exports.isVerified = (req, res, next) => {
-  if (res.locals.isAuthenticated) {
-    res.status(200).json({ success: true });
-  }
+  return res.status(200).json({ msg: { isAuthenticated: true } });
 };
 
 exports.login_post = [
@@ -122,7 +131,7 @@ exports.login_post = [
       return res.status(401).json(errors.array());
     } else {
       User.findOne({ username: req.body.username }, (err, result) => {
-        if (err) return res.status(500).json(err);
+        if (err) return res.status(500).json({ msg: err.message });
         if (result == null) {
           return res
             .status(401)
@@ -145,3 +154,27 @@ exports.login_post = [
     }
   },
 ];
+
+exports.comment_delete = (req, res, next) => {
+  Comment.findById(req.params.commentid)
+    .populate("user")
+    .exec((err, result) => {
+      console.log("result=", result.user.username);
+      console.log(res.locals.user.name);
+      if (err) return res.status(500).json({ msg: err.message });
+      if (result.user.username != res.locals.user.name)
+        return res
+          .status(403)
+          .json({ msg: "this is not your comment to delete" });
+      else {
+        Comment.findByIdAndRemove(req.params.commentid, (err) => {
+          if (err) return res.status(500).json({ msg: err.message });
+          else {
+            return res
+              .status(200)
+              .json({ msg: "this comment has been successfully removed" });
+          }
+        });
+      }
+    });
+};

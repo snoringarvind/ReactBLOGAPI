@@ -61,7 +61,7 @@ exports.blog_update_put = [
       return res.status(500).json(errors.array());
     } else {
       Blog.findByIdAndUpdate(req.params.id, blog, {}, (err, theblog) => {
-        if (err) return res.status(500).json(err);
+        if (err) return res.status(500).json({ msg: err.message });
         else {
           return res.status(200).json(theblog);
         }
@@ -75,13 +75,13 @@ exports.blog_delete = (req, res, next) => {
   // console.log(req.params.id);
   let arr = [];
   Blog.findByIdAndRemove(req.params.id, (err, theblog) => {
-    if (err) return res.status(404).json(err);
+    if (err) return res.status(404).json({ msg: err.message });
     Comment.find({ blog: req.params.id }, (err2, comments) => {
-      if (err2) return res.status(404).json({ msg: err2 });
+      if (err2) return res.status(404).json({ msg: err2.message });
       for (let i = 0; i < comments.length; i++) {
         Comment.findByIdAndRemove(comments[i]._id, {}, (err3, thecomment) => {
           arr.push(comments[i]);
-          if (err3) return res.status(404).json(err3);
+          if (err3) return res.status(404).json({ msg: err3.message });
         });
       }
       res.status(200).json({ theblog: theblog, thecomments: arr });
@@ -107,7 +107,7 @@ exports.login_post = [
       User.findOne({ username: req.body.username }, (err, result) => {
         if (err) {
           // console.log(err);
-          err.message;
+
           return res.status(500).json({ msg: err.message });
         }
 

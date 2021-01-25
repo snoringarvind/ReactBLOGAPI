@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import uniqid from "uniqid";
 import { useHistory } from "react-router-dom";
+import { response } from "express";
 
 const Form = ({ state, setState, method, url }) => {
   const [errors, setErrors] = useState([]);
   const history = useHistory();
   const [loadingBtn, setLoadingBtn] = useState(false);
+  const [error, setError] = useState("");
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
@@ -38,11 +40,14 @@ const Form = ({ state, setState, method, url }) => {
       console.log(err.message); //err.message important for network and 404 errors
       console.log(err.response);
       setLoadingBtn(false);
-      setErrors(err.response.data);
+      if (response.data) {
+        setErrors(err.response.data);
+      }
+      setError(err.message);
     }
   };
 
-  const displayError = () => {
+  const displayErrors = () => {
     const errArray = [];
     if (!Array.isArray(errors)) {
       setErrors([errors]);
@@ -58,40 +63,48 @@ const Form = ({ state, setState, method, url }) => {
     }
   };
 
+  const displayError = () => {
+    return <div className="error">{error}</div>;
+  };
+
   return (
     <div className="form-container">
-      <div className="Form">
-        <form>
-          <div className="form-group">
-            <label htmlFor="title">Blog Title:</label>
-            <input
-              type="text"
-              name="title"
-              id="title"
-              placeholder="Enter your blog title"
-              value={state.title}
-              onChange={(e) => changeHandler(e)}
-            />
-          </div>
+      {error ? (
+        displayError()
+      ) : (
+        <div className="Form">
+          <form>
+            <div className="form-group">
+              <label htmlFor="title">Blog Title:</label>
+              <input
+                type="text"
+                name="title"
+                id="title"
+                placeholder="Enter your blog title"
+                value={state.title}
+                onChange={changeHandler}
+              />
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="content">Blog Content:</label>
-            <textarea
-              name="content"
-              id="content"
-              placeholder="Enter your blog content"
-              value={state.content}
-              onChange={(e) => changeHandler(e)}
-            />
-          </div>
+            <div className="form-group">
+              <label htmlFor="content">Blog Content:</label>
+              <textarea
+                name="content"
+                id="content"
+                placeholder="Enter your blog content"
+                value={state.content}
+                onChange={changeHandler}
+              />
+            </div>
 
-          <div className="error">{displayError()}</div>
+            <div className="error">{displayErrors()}</div>
 
-          <button className="submit-btn" onClick={submitHandler}>
-            {loadingBtn ? "Submitting..." : "CreateBLog"}
-          </button>
-        </form>
-      </div>
+            <button className="submit-btn" onClick={submitHandler}>
+              {loadingBtn ? "Submitting..." : "CreateBLog"}
+            </button>
+          </form>
+        </div>
+      )}
     </div>
   );
 };

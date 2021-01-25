@@ -8,6 +8,7 @@ const Delete = () => {
   const [isDeleted, setIsDeleted] = useState(false);
   const [loading, setLoading] = useState(true);
   const [loadingBtn, setLoadingBtn] = useState(false);
+  const [error, setError] = useState("");
 
   const history = useHistory();
   console.log(history);
@@ -23,6 +24,7 @@ const Delete = () => {
       setBlog(response.data);
     } catch (err) {
       console.log("Delete=", err.message);
+      setError(err.message);
     }
   };
 
@@ -48,30 +50,38 @@ const Delete = () => {
       setLoadingBtn(false);
       setIsDeleted(true);
     } catch (err) {
+      setError(err.message);
       console.log("DELETE=", err.message);
     }
+  };
+
+  const displayError = () => {
+    return <div className="error">{error}</div>;
   };
 
   return (
     <div className="Delete">
       {loading && "Loading..."}
-      {!loading && (
-        <>
-          <div className="Detail">
-            <div className="title">{blog.title}</div>
-            <div className="content">{blog.content}</div>
-          </div>
-          <div className="confirm-delete-msg">
-            <p>Are you sure, you want to delete this blog?</p>
-          </div>
-          <div className="delete-btn">
-            <button onClick={submitHandler}>
-              {loadingBtn ? "Deleting...." : "Delete"}
-            </button>
-          </div>
-          {isDeleted && <Redirect to="/blogs" />}
-        </>
-      )}
+      {!loading &&
+        (error ? (
+          displayError()
+        ) : (
+          <>
+            <div className="Detail">
+              <div className="title">{blog.title}</div>
+              <div className="content">{blog.content}</div>
+            </div>
+            <div className="confirm-delete-msg">
+              <p>Are you sure, you want to delete this blog?</p>
+            </div>
+            <div className="delete-btn">
+              <button onClick={submitHandler}>
+                {loadingBtn ? "Deleting...." : "Delete"}
+              </button>
+            </div>
+            {isDeleted && <Redirect to="/blogs" />}
+          </>
+        ))}
     </div>
   );
 };

@@ -24,19 +24,19 @@ exports.issueJWT = (user) => {
     token,
     iat: payload.iat,
     expiresIn: options.expiresIn,
-    // user: user.username,
+    user: user.id,
   };
 };
 
 exports.verifyJWT = (req, res, next) => {
   try {
-    // console.log(req.headers);
+    console.log(req.headers);
     // console.log("headers12", req.headers.authorization);
     const bearerToken = req.headers.authorization.split(" ")[1];
     const decoded = jwt.verify(bearerToken, process.env.SECRET);
-    // console.log(decoded);
+    console.log(decoded);
     res.locals.user = decoded;
-    // console.log("success");
+    console.log("success");
     return next();
   } catch (err) {
     // console.log("failed");

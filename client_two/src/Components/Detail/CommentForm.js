@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./CommentForm.css";
+// import { response } from "express";
 import uniqid from "uniqid";
+import { Redirect } from "react-router-dom";
 
 const CommentForm = ({
   comment,
@@ -46,22 +48,22 @@ const CommentForm = ({
       setCommentsLoading(true);
       setLoadingBtn(false);
       console.log(gotComments);
-
       setErrors([]);
     } catch (err) {
       // console.log("Detail=", err.response.data);
       console.log("Detail=", err.message);
+      setLoadingBtn(false);
       if (err.response) {
         setErrors(err.response.data);
       }
       setError(err.message);
-      setLoadingBtn(false);
     }
   };
 
   const displayError = () => {
     return <div className="error">{error}</div>;
   };
+
   const displayErrors = () => {
     const errArray = [];
     if (!Array.isArray(errors)) {
@@ -77,6 +79,7 @@ const CommentForm = ({
       }
     }
   };
+
   return (
     <div className="CommentForm">
       {error ? (
@@ -90,7 +93,7 @@ const CommentForm = ({
               name="comment"
               id="comment"
               placeholder="Enter your comment here"
-              onChange={changeHandler}
+              onChange={(e) => changeHandler(e)}
               value={state.comment}
             />
           </div>

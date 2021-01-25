@@ -5,7 +5,6 @@ import uniqid from "uniqid";
 import CommentForm from "./CommentForm";
 import CommentDisplay from "./CommentDisplay";
 import "./Detail.css";
-import { set } from "mongoose";
 
 const Detail = () => {
   const [blogDetail, setblogDetail] = useState("");
@@ -28,7 +27,6 @@ const Detail = () => {
       // console.log(response);
       setblogDetail(response.data);
       setLoading(false);
-      setError("");
     } catch (err) {
       console.log("Detail=", err.message);
       setLoading(false);
@@ -43,14 +41,13 @@ const Detail = () => {
         url: `http://localhost:3000/api/blog/${params.id}/comment`,
         method: "GET",
       });
-      // console.log(response);
+      console.log(response);
       // console.log(response.data);
       setComment(response.data);
       setCommentsLoading(false);
-      setError("");
     } catch (err) {
-      setError(err.message);
       setCommentsLoading(false);
+      setError(err.message);
       console.log("Detail=", err.message);
     }
   };
@@ -70,25 +67,8 @@ const Detail = () => {
   const displayBlog = () => {
     return (
       <div className="blog">
-        {error ? (
-          displayError()
-        ) : (
-          <>
-            {" "}
-            <div className="title">{blogDetail.title}</div>
-            <div className="content">{blogDetail.content}</div>
-            <div className="update-btn">
-              <Link to={`/blog/${blogDetail._id}/update`}>
-                <button>Update</button>
-              </Link>
-            </div>
-            <div className="delete-btn">
-              <Link to={`/blog/${blogDetail._id}/delete`}>
-                <button>Delete</button>
-              </Link>
-            </div>
-          </>
-        )}
+        <div className="title">{blogDetail.title}</div>
+        <div className="content">{blogDetail.content}</div>
       </div>
     );
   };
@@ -109,7 +89,9 @@ const Detail = () => {
       {commentsLoading && "comments loading...."}
 
       {!commentsLoading &&
-        (comment.length > 0 ? (
+        (error ? (
+          displayError()
+        ) : comment.length > 0 ? (
           <div className="comments-container">
             <div className="comments">
               {comment.map((value, index) => {

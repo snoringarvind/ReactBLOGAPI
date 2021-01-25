@@ -23,7 +23,7 @@ const Login = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/blogs/admin-login",
+        "http://localhost:3000/api/blogs/login",
         state
       );
       const jwtData = JSON.stringify(response.data);
@@ -66,6 +66,7 @@ const Login = () => {
   const displayError = () => {
     return <div className="error">{error}</div>;
   };
+
   return (
     <div className="login-container">
       {error ? (
@@ -81,7 +82,7 @@ const Login = () => {
                 id="username"
                 placeholder="Enter username"
                 name="username"
-                onChange={changeHandler}
+                onChange={(e) => changeHandler(e)}
               />
             </div>
             <div className="form-group">
@@ -91,7 +92,7 @@ const Login = () => {
                 id="password"
                 placeholder="Enter Password"
                 name="password"
-                onChange={changeHandler}
+                onChange={(e) => changeHandler(e)}
               />
             </div>
             <div className="errors">{displayErrors()}</div>

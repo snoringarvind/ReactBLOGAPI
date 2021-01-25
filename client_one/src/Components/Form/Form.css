@@ -1,20 +1,22 @@
 .form-container {
-  height: 88vh; /*nav height*/
+  /* nav height */
+  /* nav height minus margin */
+  height: 89vh;
   margin: 2vh;
-  border: 1px solid;
+  /* border: 1px solid red; */
   display: flex;
   justify-content: center;
+}
+
+.form-container .Form {
   background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+  flex-basis: 80%;
+  /* border: 1px solid green; */
+  padding: 20px;
+  border-radius: 4px;
 }
 
-.Form {
-  flex-basis: 70%;
-  border: 1px solid;
-  padding: 10px;
-  border-radius: 2px;
-}
-
-#title {
+.form-container #title {
   display: block;
   width: 100%;
   font-size: 1.1rem;
@@ -22,31 +24,37 @@
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 
-.form-group label {
+.form-container .form-group label {
   font-size: 1.3rem;
   text-decoration: underline;
   margin-bottom: 6px;
   display: block;
 }
 
-.form-group {
+.form-container .form-group {
   margin-bottom: 15px;
 }
 
-#content {
+.form-container #content {
   font-size: 1.1rem;
   padding: 15px;
-  min-height: 45vh;
+  min-height: 65vh;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   width: 100%;
   resize: vertical;
 }
 
-.submit-btn {
+.form-container .submit-btn {
   padding: 10px 15px;
   border-radius: 5px;
   border: none;
   background-color: blue;
   color: white;
   font-size: 1.1rem;
+}
+
+@media screen and (max-device-width: 1000px) {
+  .form-container .Form {
+    flex-basis: 100%;
+  }
 }
