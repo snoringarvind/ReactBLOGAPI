@@ -6,8 +6,7 @@ import "./Login.css";
 import { BlogsContext } from "../Context";
 
 const Login = () => {
-  const { isAuthValue } = useContext(BlogsContext);
-  const [isAuth, setIsAuth] = isAuthValue;
+  const [isAuth, setIsAuth] = useState(false);
 
   const [state, setState] = useState({ username: "", password: "" });
   const [errors, setErrors] = useState([]);
@@ -33,7 +32,9 @@ const Login = () => {
       localStorage.setItem("jwtData", jwtData);
       setLoading(false);
       setErrors([]);
+
       setIsAuth(true);
+      console.log(isAuth);
     } catch (err) {
       console.log("Login=", err.messaage);
       setLoading(false);
@@ -62,9 +63,13 @@ const Login = () => {
   };
 
   const redirect_user = () => {
+    console.log("hello");
     window.location.reload();
     return <Redirect to="/blogs" />;
   };
+
+  console.log(isAuth);
+  console.log("hello");
 
   const displayError = () => {
     return <div className="error">{error}</div>;

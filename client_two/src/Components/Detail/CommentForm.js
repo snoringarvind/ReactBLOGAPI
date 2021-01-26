@@ -16,12 +16,13 @@ const CommentForm = ({
   commentsLoading,
 }) => {
   const { isAuthValue } = useContext(BlogsContext);
-  const [setIsAuth] = isAuthValue;
+  const [isAuth, setIsAuth] = isAuthValue;
 
   const [state, setState] = useState({ comment: "" });
   const [loadingBtn, setLoadingBtn] = useState(false);
   const [error, setError] = useState("");
   const [errors, setErrors] = useState([]);
+  const [notLogged, setnotLogged] = useState("");
 
   const changeHandler = (e) => {
     const { name, value } = e.target; //destructuring
@@ -34,8 +35,14 @@ const CommentForm = ({
     setLoadingBtn(true);
     const jwt = JSON.parse(localStorage.getItem("jwtData"));
 
-    if (jwt == null) {
-      setIsAuth(false);
+    // if (jwt == null) {
+    //   setIsAuth(false);
+    // }
+
+    if (!isAuth) {
+      setnotLogged("Please login inorder to comment");
+      setLoadingBtn(false);
+      return;
     }
 
     try {
@@ -93,25 +100,28 @@ const CommentForm = ({
       {error ? (
         displayError()
       ) : (
-        <form>
-          <div className="form-group">
-            <label htmlFor="comment">Comment:</label>
-            <textarea
-              type="text"
-              name="comment"
-              id="comment"
-              placeholder="Enter your comment here"
-              onChange={(e) => changeHandler(e)}
-              value={state.comment}
-            />
-          </div>
-          <div className="error">{displayErrors()}</div>
-          <div className="comment-btn">
-            <button onClick={submitHandler}>
-              {loadingBtn ? "Adding Comment...." : "Add Comment"}
-            </button>
-          </div>
-        </form>
+        <>
+          <form>
+            <div className="form-group">
+              <label htmlFor="comment">Comment:</label>
+              <textarea
+                type="text"
+                name="comment"
+                id="comment"
+                placeholder="Enter your comment here"
+                onChange={(e) => changeHandler(e)}
+                value={state.comment}
+              />
+            </div>
+            <div className="error">{displayErrors()}</div>
+            <div className="comment-btn">
+              <button onClick={submitHandler}>
+                {loadingBtn ? "Adding Comment...." : "Add Comment"}
+              </button>
+            </div>
+          </form>
+          <div>{notLogged}</div>
+        </>
       )}
     </div>
   );

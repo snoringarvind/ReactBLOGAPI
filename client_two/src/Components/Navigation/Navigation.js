@@ -3,7 +3,8 @@ import { Link, useHistory, useRouteMatch } from "react-router-dom";
 import "./Navigation.css";
 
 const Navigation = ({ to, label }) => {
-  // console.log(to);
+  console.log(to);
+  console.log("mannn");
 
   //current route check kar
   let match = useRouteMatch({ path: to });

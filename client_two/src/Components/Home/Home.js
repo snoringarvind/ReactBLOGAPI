@@ -1,6 +1,11 @@
 import axios from "axios";
 import { useContext } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import AuthButton from "../AuthButton";
 import { BlogsContext } from "../Context";
 import Navigation from "../Navigation/Navigation";
@@ -17,25 +22,29 @@ const Home = () => {
     <div className="Home">
       <Router>
         <div className="Navigation">
-          {isAuth && <Navigation to="/blogs" label="Blogs" />}
+          <Navigation to="/blogs" label="Blogs" />
           {isAuth && <Navigation to="/logout" label="Logout" />}
+          {!isAuth && <Navigation to="/login" label="Login" />}
         </div>
-        <AuthButton />
 
+        <AuthButton />
         <Switch>
-          {isAuth ? (
-            <>
-              <Route path="/blogs">
-                <List />
-              </Route>
-              <Route exact path="/blog/:id">
-                <Detail />
-              </Route>
-              <Route path="/logout">
-                <Logout />
-              </Route>
-            </>
-          ) : (
+          <Route exact path="/">
+            <Redirect to="/blogs" />
+          </Route>
+          <Route path="/blogs">
+            <List />
+          </Route>
+          <Route exact path="/blog/:id">
+            <Detail />
+          </Route>
+          {isAuth && (
+            <Route path="/logout">
+              <Logout />
+            </Route>
+          )}
+
+          {!isAuth && (
             <Route path="/login">
               <Login />
             </Route>

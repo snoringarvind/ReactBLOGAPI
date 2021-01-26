@@ -6,8 +6,7 @@ import "./Login.css";
 import { BlogsContext } from "../Context";
 
 const Login = () => {
-  const { isAuthValue } = useContext(BlogsContext);
-  const [isAuth, setIsAuth] = isAuthValue;
+  const [isAuth, setIsAuth] = useState(false);
   const [state, setState] = useState({ username: "", password: "" });
   const [errors, setErrors] = useState([]);
   const [error, setError] = useState("");

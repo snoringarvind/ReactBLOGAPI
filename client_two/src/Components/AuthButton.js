@@ -4,15 +4,14 @@ import { BlogsContext } from "./Context";
 // import Navigation from "./Navigation";
 
 const AuthButton = () => {
-  const { isAuthValue } = useContext(BlogsContext);
-  const [isAuth] = isAuthValue;
+  // const { isAuthValue } = useContext(BlogsContext);
+  // const [isAuth, setIsAuth] = isAuthValue;
 
   const PushHistory = () => {
     const history = useHistory();
     const path = history.location.pathname;
     console.log(path);
-    //agar login hoga toh '/' par jayega and login nahi hoga toh '/login' par jayega isliye push taki rrefresh kare toh login page na aaye.
-    if (path === "/login" || path === "/") {
+    if (path === "/logout" || path === "/login") {
       history.push("/blogs");
     } else {
       history.push(path);
@@ -21,8 +20,9 @@ const AuthButton = () => {
 
   return (
     <div className="AuthButton">
-      {!isAuth && <Redirect to="/login" />}
-      {isAuth && PushHistory()}
+      {/* {!isAuth && <Redirect to="/login" />} */}
+      {/* {isAuth && PushHistory()} */}
+      {PushHistory()}
     </div>
   );
 };

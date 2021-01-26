@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { Redirect } from "react-router-dom";
+import { BlogsContext } from "./Context";
 
 const Logout = () => {
   return (
