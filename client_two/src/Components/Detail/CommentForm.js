@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import "./CommentForm.css";
 // import { response } from "express";
 import uniqid from "uniqid";
 import { Redirect } from "react-router-dom";
+import { BlogsContext } from "../Context";
 
 const CommentForm = ({
   comment,
@@ -14,6 +15,9 @@ const CommentForm = ({
   setCommentsLoading,
   commentsLoading,
 }) => {
+  const { isAuthValue } = useContext(BlogsContext);
+  const [setIsAuth] = isAuthValue;
+
   const [state, setState] = useState({ comment: "" });
   const [loadingBtn, setLoadingBtn] = useState(false);
   const [error, setError] = useState("");
@@ -29,6 +33,10 @@ const CommentForm = ({
 
     setLoadingBtn(true);
     const jwt = JSON.parse(localStorage.getItem("jwtData"));
+
+    if (jwt == null) {
+      setIsAuth(false);
+    }
 
     try {
       const headers = { authorization: `Bearer ${jwt.jwt.token}` };

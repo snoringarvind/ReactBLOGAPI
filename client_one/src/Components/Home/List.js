@@ -20,6 +20,7 @@ const List = () => {
       // console.log(response.data);
       setBlogList(response.data);
       setLoading(false);
+      setError("");
     } catch (err) {
       console.log("List=", err.message);
       setError(err.message); //important server errors

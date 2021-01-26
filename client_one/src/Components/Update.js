@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import Form from "../Form/Form";
-import "../Form/Form.css";
+import Form from "./Form/Form";
 
 const Update = () => {
   const params = useParams();
@@ -18,6 +17,7 @@ const Update = () => {
       });
       setState(response.data);
       setLoading(false);
+      setError("");
     } catch (err) {
       console.log("Update", err.message);
       setError(err.message);

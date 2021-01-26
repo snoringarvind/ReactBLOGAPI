@@ -38,3 +38,29 @@
 .login-container .form-group {
   margin-bottom: 10px;
 }
+
+@media screen and (max-device-width: 1000px) {
+  .login-container .Login {
+    flex-basis: 100%;
+  }
+
+  .login-container {
+    background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+    border: 1px solid red;
+    height: 100vh;
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .login-container .Login {
+    flex-basis: 100%;
+  }
+
+  .login-container {
+    background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+    border: 1px solid red;
+    height: 100vh;
+    margin-top: 0;
+  }
+}

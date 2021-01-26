@@ -5,12 +5,17 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 require("./config/database");
 const cors = require("cors");
+const helmet = require("helmet");
+const compression = require("compression");
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const blogsRouter = require("./routes/blogs");
 
 const app = express();
+
+app.use(compression());
+app.use(helmet());
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

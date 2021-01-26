@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useRouteMatch } from "react-router-dom";
-import Form from "../Form/Form";
-import "../Form/Form.css";
+import Form from "./Form/Form";
 
 const Create = () => {
   const [state, setState] = useState({ title: "", content: "" });

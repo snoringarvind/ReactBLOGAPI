@@ -1,19 +1,26 @@
 .form-container {
   /* nav height */
   /* nav height minus margin */
-  height: 89vh;
+  min-height: 89vh;
   margin: 2vh;
   /* border: 1px solid red; */
   display: flex;
   justify-content: center;
+  position: relative;
+}
+
+.form-group {
+  position: relative;
 }
 
 .form-container .Form {
   background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
   flex-basis: 80%;
-  /* border: 1px solid green; */
+  border: 1px solid green;
   padding: 20px;
   border-radius: 4px;
+  position: relative;
+  /* height: 100%; */
 }
 
 .form-container #title {
@@ -37,11 +44,14 @@
 
 .form-container #content {
   font-size: 1.1rem;
-  padding: 15px;
-  min-height: 65vh;
+  padding: 6px;
+  /* min-height: 55vh; */
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   width: 100%;
   resize: vertical;
+  /* position: absolute; */
+  width: 100%;
+  height: 56vh;
 }
 
 .form-container .submit-btn {
@@ -56,5 +66,17 @@
 @media screen and (max-device-width: 1000px) {
   .form-container .Form {
     flex-basis: 100%;
+  }
+  .form-container {
+    margin: 1vh;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .form-container .Form {
+    flex-basis: 100%;
+  }
+  .form-container {
+    margin: 1vh;
   }
 }

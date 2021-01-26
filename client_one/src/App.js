@@ -1,20 +1,15 @@
 import "./App.css";
-import { BlogsContext } from "./Components/Context";
-import { useContext } from "react";
-import Home from "./Components/HomePage/Home";
+import { BlogsProvider } from "./Components/Context";
+import Home from "./Components/Home/Home";
 
-const App = () => {
-  const { isAuthValue } = useContext(BlogsContext);
-  const [isAuth] = isAuthValue;
-  console.log(isAuth);
-
-  console.log("hiii");
+function App() {
   return (
     <div className="App">
-      sddddddddddddddddddddddddddddddd
-      <Home />
+      <BlogsProvider>
+        <Home />
+      </BlogsProvider>
     </div>
   );
-};
+}
 
 export default App;

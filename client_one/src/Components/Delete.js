@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { Redirect, useHistory, useParams } from "react-router-dom";
+import { BlogsContext } from "./Context";
 
 const Delete = () => {
+  const { isAuthValue } = useContext(BlogsContext);
+  const [setIsAuth] = isAuthValue;
+  // const [jwtData, setJwtData] = jwtDataValue;
+
   const params = useParams();
   const [blog, setBlog] = useState("");
   const [isDeleted, setIsDeleted] = useState(false);
@@ -37,6 +42,9 @@ const Delete = () => {
     setLoadingBtn(true);
 
     const jwt = JSON.parse(localStorage.getItem("jwtData"));
+    if (jwt == null) {
+      setIsAuth(false);
+    }
 
     try {
       const headers = { authorization: `Bearer ${jwt.jwt.token}` };
@@ -48,6 +56,7 @@ const Delete = () => {
       });
       setLoadingBtn(false);
       setIsDeleted(true);
+      setError("");
     } catch (err) {
       setError(err.message);
       console.log("DELETE=", err.message);

@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import uniqid from "uniqid";
 import { Redirect, useHistory, useLocation } from "react-router-dom";
 import "./Login.css";
+import { BlogsContext } from "../Context";
 
 const Login = () => {
+  const { isAuthValue } = useContext(BlogsContext);
+  const [isAuth, setIsAuth] = isAuthValue;
+
   const [state, setState] = useState({ username: "", password: "" });
   const [errors, setErrors] = useState([]);
-  const [isAuth, setIsAuth] = useState(false);
   const [error, setError] = useState("");
 
   //when the user clicks on login button, the loading is set to true until we get a response from server

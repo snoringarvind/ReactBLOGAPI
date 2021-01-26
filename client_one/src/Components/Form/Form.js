@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import uniqid from "uniqid";
 import { useHistory } from "react-router-dom";
-import { response } from "express";
+import { BlogsContext } from "../Context";
+import "./Form.css";
 
 const Form = ({ state, setState, method, url }) => {
+  const { isAuthValue } = useContext(BlogsContext);
+  const [setIsAuth] = isAuthValue;
   const [errors, setErrors] = useState([]);
   const history = useHistory();
   const [loadingBtn, setLoadingBtn] = useState(false);
@@ -19,6 +22,10 @@ const Form = ({ state, setState, method, url }) => {
     e.preventDefault();
     setLoadingBtn(true);
     const jwt = JSON.parse(localStorage.getItem("jwtData"));
+
+    if (jwt == null) {
+      setIsAuth(false);
+    }
 
     try {
       const headers = { authorization: `Bearer ${jwt.jwt.token}` };
@@ -36,11 +43,12 @@ const Form = ({ state, setState, method, url }) => {
         console.log(err.message);
       }
       setErrors([]);
+      setError("");
     } catch (err) {
       console.log(err.message); //err.message important for network and 404 errors
       console.log(err.response);
       setLoadingBtn(false);
-      if (response.data) {
+      if (err.response.data) {
         setErrors(err.response.data);
       }
       setError(err.message);

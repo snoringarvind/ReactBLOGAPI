@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import "./CommentDisplay.css";
+import { BlogsContext } from "../Context";
 
 const CommentDisplay = ({
   comment,
@@ -9,11 +10,16 @@ const CommentDisplay = ({
   setGotComments,
   setCommentsLoading,
 }) => {
+  const { isAuthValue } = useContext(BlogsContext);
+  const [setIsAuth] = isAuthValue;
   const [error, setError] = useState("");
 
   const deleteHandler = async (e) => {
     e.preventDefault();
     const jwt = JSON.parse(localStorage.getItem("jwtData"));
+    if (jwt == null) {
+      setIsAuth(false);
+    }
     console.log(comment._id);
 
     console.log(params.id);
@@ -26,6 +32,7 @@ const CommentDisplay = ({
       });
       setGotComments(!gotComments);
       setCommentsLoading(true);
+      setError("");
     } catch (err) {
       console.log("CommentDisplay=", err.message);
       setError(err.message);

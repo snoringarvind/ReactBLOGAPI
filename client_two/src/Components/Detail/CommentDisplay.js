@@ -11,12 +11,17 @@ const CommentDisplay = ({
   setGotComments,
   setCommentsLoading,
 }) => {
+  const { isAuthValue } = useContext(BlogsContext);
+  const [setIsAuth] = isAuthValue;
   // const { jwtDataValue } = useContext(BlogsContext);
   const jwtData = JSON.parse(localStorage.getItem("jwtData"));
   const [deleteButton, setDeleteButton] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  if (jwtData == null) {
+    setIsAuth(false);
+  }
   // console.log(comment.user);
   // console.log(jwtData.jwt.);
   // console.log(comment.user._id, jwtData.jwt.user);
@@ -29,6 +34,9 @@ const CommentDisplay = ({
     e.preventDefault();
     const jwt = JSON.parse(localStorage.getItem("jwtData"));
     // console.log(comment._id);
+    if (jwt == null) {
+      setIsAuth(false);
+    }
 
     // console.log(params.id);
     try {

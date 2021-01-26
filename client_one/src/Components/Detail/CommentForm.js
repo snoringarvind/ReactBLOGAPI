@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import "./CommentForm.css";
 import uniqid from "uniqid";
+import { BlogsContext } from "../Context";
 
 const CommentForm = ({
   params,
@@ -9,6 +10,9 @@ const CommentForm = ({
   gotComments,
   setCommentsLoading,
 }) => {
+  const { isAuthValue } = useContext(BlogsContext);
+  const [setIsAuth] = isAuthValue;
+
   const [state, setState] = useState({ comment: "" });
   const [loadingBtn, setLoadingBtn] = useState(false);
   const [error, setError] = useState("");
@@ -24,6 +28,9 @@ const CommentForm = ({
 
     setLoadingBtn(true);
     const jwt = JSON.parse(localStorage.getItem("jwtData"));
+    if (jwt == null) {
+      setIsAuth(false);
+    }
 
     try {
       const headers = { authorization: `Bearer ${jwt.jwt.token}` };
@@ -40,6 +47,7 @@ const CommentForm = ({
       console.log(gotComments);
 
       setErrors([]);
+      setError("");
     } catch (err) {
       // console.log("Detail=", err.response.data);
       console.log("Detail=", err.message);

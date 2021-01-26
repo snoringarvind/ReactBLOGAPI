@@ -3,14 +3,13 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import List from "./List";
 import Navigation from "../Navigation/Navigation";
 import AuthButton from "../AuthButton";
-import Login from "../LoginPage/Login";
+import Login from "../Login/Login";
 import { BlogsContext } from "../Context";
 import Logout from "../Logout";
-import Detail from "../DetailPage/Detail";
-import Update from "../UpdatePage/Update";
-import Create from "../CreatePage/Create";
-import Delete from "../DeletePage/Delete";
-import "./Home.css";
+import Detail from "../Detail/Detail";
+import Update from "../Update";
+import Create from "../Create";
+import Delete from "../Delete";
 
 const Home = () => {
   const { isAuthValue } = useContext(BlogsContext);
@@ -18,7 +17,6 @@ const Home = () => {
 
   return (
     <div className="Home">
-      console.log('hiiiiiiiiiiiiiiiiii');
       <Router>
         <div className="Navigation">
           {/* call saare honge ismein */}
