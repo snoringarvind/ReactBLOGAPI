@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory, useRouteMatch } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 import "./Navigation.css";
 
 const Navigation = ({ to, label }) => {

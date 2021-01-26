@@ -13,22 +13,21 @@ const Delete = () => {
   const history = useHistory();
   console.log(history);
 
-  const axios_blogDetail = async () => {
-    try {
-      const response = await axios({
-        url: `http://localhost:3000/api/blog/${params.id}`,
-        method: "GET",
-      });
-      console.log(response);
-      setLoading(false);
-      setBlog(response.data);
-    } catch (err) {
-      console.log("Delete=", err.message);
-      setError(err.message);
-    }
-  };
-
   useEffect(() => {
+    const axios_blogDetail = async () => {
+      try {
+        const response = await axios({
+          url: `http://localhost:3000/api/blog/${params.id}`,
+          method: "GET",
+        });
+        console.log(response);
+        setLoading(false);
+        setBlog(response.data);
+      } catch (err) {
+        console.log("Delete=", err.message);
+        setError(err.message);
+      }
+    };
     axios_blogDetail();
   }, []);
 
@@ -42,7 +41,7 @@ const Delete = () => {
     try {
       const headers = { authorization: `Bearer ${jwt.jwt.token}` };
 
-      const response = await axios({
+      await axios({
         url: `http://localhost:3000/api/blog/${params.id}`,
         headers: headers,
         method: "DELETE",

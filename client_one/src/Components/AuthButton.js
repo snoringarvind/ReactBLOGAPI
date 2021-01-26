@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Redirect, useHistory, useLocation } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { BlogsContext } from "./Context";
 // import Navigation from "./Navigation";
 

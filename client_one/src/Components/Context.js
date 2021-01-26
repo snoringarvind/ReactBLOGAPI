@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
-import { useRouteMatch } from "react-router-dom";
 
 export const BlogsContext = createContext();
 
@@ -45,9 +44,7 @@ export const BlogsProvider = ({ children }) => {
   useEffect(() => {
     axios_isAuth();
   }, []);
-  const displayError = () => {
-    return <div className="error">{loginError}</div>;
-  };
+
   return (
     <div className="Context">
       <BlogsContext.Provider

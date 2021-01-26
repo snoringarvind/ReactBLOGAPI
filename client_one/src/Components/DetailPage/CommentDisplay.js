@@ -4,7 +4,6 @@ import "./CommentDisplay.css";
 
 const CommentDisplay = ({
   comment,
-  index,
   params,
   gotComments,
   setGotComments,
@@ -20,7 +19,7 @@ const CommentDisplay = ({
     console.log(params.id);
     try {
       const headers = { authorization: `Bearer ${jwt.jwt.token}` };
-      const response = await axios({
+      await axios({
         url: `http://localhost:3000/api/blog/${params.id}/comment/${comment._id}`,
         method: "DELETE",
         headers: headers,

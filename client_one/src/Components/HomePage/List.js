@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link } from "react-router-dom";
 import uniqid from "uniqid";
 import "./List.css";
 

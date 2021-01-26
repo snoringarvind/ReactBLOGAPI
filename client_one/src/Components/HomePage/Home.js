@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import List from "./List";
 import Navigation from "../Navigation/Navigation";
 import AuthButton from "../AuthButton";
@@ -14,10 +14,11 @@ import "./Home.css";
 
 const Home = () => {
   const { isAuthValue } = useContext(BlogsContext);
-  const [isAuth, setIsAuth] = isAuthValue;
+  const [isAuth] = isAuthValue;
 
   return (
     <div className="Home">
+      console.log('hiiiiiiiiiiiiiiiiii');
       <Router>
         <div className="Navigation">
           {/* call saare honge ismein */}

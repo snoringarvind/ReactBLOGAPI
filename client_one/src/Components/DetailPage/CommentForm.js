@@ -4,13 +4,10 @@ import "./CommentForm.css";
 import uniqid from "uniqid";
 
 const CommentForm = ({
-  comment,
-  setComment,
   params,
   setGotComments,
   gotComments,
   setCommentsLoading,
-  commentsLoading,
 }) => {
   const [state, setState] = useState({ comment: "" });
   const [loadingBtn, setLoadingBtn] = useState(false);
@@ -30,17 +27,12 @@ const CommentForm = ({
 
     try {
       const headers = { authorization: `Bearer ${jwt.jwt.token}` };
-      const response = await axios({
+      await axios({
         url: `http://localhost:3000/api/blog/${params.id}/comment`,
         method: "POST",
         headers: headers,
         data: state,
       });
-      //doing this so the comments will be added without reloading the page
-      //the user here is actually username.
-      const y = { comment: state.comment, user: { username: jwt.jwt.user } };
-      const x = response.data;
-      // console.log(x);
       setState({ comment: "" });
       setGotComments(!gotComments);
       setCommentsLoading(true);

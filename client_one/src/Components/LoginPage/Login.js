@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import uniqid from "uniqid";
-import { Redirect, useHistory, useLocation } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {

@@ -5,7 +5,6 @@ import uniqid from "uniqid";
 import CommentForm from "./CommentForm";
 import CommentDisplay from "./CommentDisplay";
 import "./Detail.css";
-import { set } from "mongoose";
 
 const Detail = () => {
   const [blogDetail, setblogDetail] = useState("");
