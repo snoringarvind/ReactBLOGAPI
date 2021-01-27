@@ -36,7 +36,7 @@ const CommentForm = ({
     const jwt = JSON.parse(localStorage.getItem("jwtData"));
 
     if (!isAuth) {
-      setnotLogged("Please login inorder to comment");
+      setnotLogged("Please login to make a comment :)");
       setLoadingBtn(false);
       return;
     }

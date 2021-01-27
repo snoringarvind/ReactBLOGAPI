@@ -20,7 +20,8 @@
 .signup-container #lname,
 .signup-container #email,
 .signup-container #username,
-.signup-container #password {
+.signup-container #password,
+.signup-container #confirmPassword {
   font-size: 1.1rem;
   width: 100%;
   padding: 10px;

@@ -5,10 +5,19 @@ const User = require("../models/User");
 const Comment = require("../models/Comment");
 
 exports.blog_create_post = [
-  body("title", "title cannot be empty").trim().isLength({ min: 1 }).escape(),
-  body("content", "content cannot be empty")
+  body("title")
     .trim()
     .isLength({ min: 1 })
+    .withMessage("title cannot be empty")
+    .isLength({ max: 50 })
+    .withMessage("title cannot be larger than 50 characters")
+    .escape(),
+  body("content")
+    .trim()
+    .isLength({ min: 10 })
+    .withMessage("content cannot be less than 10 characters")
+    .isLength({ max: 1000 })
+    .withMessage("content cannot be larger than 1000 characters")
     .escape(),
   (req, res, next) => {
     // console.log("okay", req.body);
@@ -42,10 +51,19 @@ exports.blog_update_get = (req, res, next) => {
 };
 
 exports.blog_update_put = [
-  body("title", "title cannot be empty").trim().isLength({ min: 1 }).escape(),
-  body("content", "content cannot be empty")
+  body("title")
     .trim()
     .isLength({ min: 1 })
+    .withMessage("title cannot be empty")
+    .isLength({ max: 50 })
+    .withMessage("title cannot be larger than 50 characters")
+    .escape(),
+  body("content")
+    .trim()
+    .isLength({ min: 10 })
+    .withMessage("content cannot be less than 10 characters")
+    .isLength({ max: 1000 })
+    .withMessage("content cannot be larger than 1000 characters")
     .escape(),
   (req, res, next) => {
     // console.log("body=", req.body);

@@ -11,16 +11,45 @@ exports.signup_get = (req, res, next) => {
 
 exports.signup_post = [
   body("admin").escape(),
-  body("fname", "fname cannot be empty").trim().isLength({ min: 1 }).escape(),
-  body("lname", "lname cannot be empty").trim().isLength({ min: 1 }).escape(),
-  body("email", "email cannot be empty").trim().isLength({ min: 1 }).escape(),
-  body("username", "username cannot be empty")
+
+  body("fname")
+    .trim()
+    .isLength({ min: 3 })
+    .withMessage("first name cannot be less than 3 characters")
+    .isLength({ max: 20 })
+    .withMessage("first name cannot not be more than 20 characters")
+    .escape(),
+
+  body("lname")
+    .trim()
+    .isLength({ min: 3 })
+    .withMessage("last name cannot be less than 3 characters")
+    .isLength({ max: 20 })
+    .withMessage("last name cannot be more than 20 characters")
+    .escape(),
+
+  body("email", "email cannot be empty")
     .trim()
     .isLength({ min: 1 })
+    .isEmail()
+    .withMessage("Please enter a valid email")
+    .normalizeEmail()
     .escape(),
+
+  body("username")
+    .trim()
+    .isLength({ min: 3 })
+    .withMessage("username cannot be less than 3 characters")
+    .isLength({ max: 10 })
+    .withMessage("username cannot be more than 10 characters")
+    .escape(),
+
   body("password", "password cannot be empty")
     .trim()
-    .isLength({ min: 1 })
+    .isLength({ min: 6 })
+    .withMessage("password cannot be less than 6 characters")
+    .isLength({ max: 20 })
+    .withMessage("password cannot be more than 20 characters")
     .escape(),
 
   utils.hashPassword,

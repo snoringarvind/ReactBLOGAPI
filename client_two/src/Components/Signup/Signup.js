@@ -12,6 +12,7 @@ const Signup = () => {
     email: "",
     username: "",
     password: "",
+    confirmPassword: "",
   });
   const [errors, setErrors] = useState([]);
   const [error, setError] = useState("");
@@ -27,6 +28,12 @@ const Signup = () => {
     e.preventDefault();
     console.log("submitting");
     console.log(state);
+
+    if (state.password !== state.confirmPassword) {
+      setErrors({ msg: "Passwords don't match :(" });
+      return;
+    }
+
     try {
       const response = await axios({
         url: "http://localhost:3000/api/blogs/signup",
@@ -120,6 +127,16 @@ const Signup = () => {
                 id="password"
                 placeholder="Enter Password"
                 name="password"
+                onChange={changeHandler}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="confirmPassword">Confirm Password:</label>
+              <input
+                type="text"
+                id="confirmPassword"
+                placeholder="Enter above password again"
+                name="confirmPassword"
                 onChange={changeHandler}
               />
             </div>
