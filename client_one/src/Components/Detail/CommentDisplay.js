@@ -10,7 +10,7 @@ const CommentDisplay = ({
   setGotComments,
   setCommentsLoading,
 }) => {
-  const { isAuthValue } = useContext(BlogsContext);
+  const { isAuthValue, serverUrl } = useContext(BlogsContext);
   const [setIsAuth] = isAuthValue;
   const [error, setError] = useState("");
 
@@ -26,7 +26,7 @@ const CommentDisplay = ({
     try {
       const headers = { authorization: `Bearer ${jwt.jwt.token}` };
       await axios({
-        url: `http://localhost:3000/api/blog/${params.id}/comment/${comment._id}`,
+        url: `${serverUrl}/blog/${params.id}/comment/${comment._id}`,
         method: "DELETE",
         headers: headers,
       });

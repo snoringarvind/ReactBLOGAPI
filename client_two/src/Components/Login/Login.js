@@ -12,6 +12,7 @@ const Login = () => {
   const [state, setState] = useState({ username: "", password: "" });
   const [errors, setErrors] = useState([]);
   const [error, setError] = useState("");
+  const { serverUrl } = useContext(BlogsContext);
 
   //when the user clicks on login button, the loading is set to true until we get a response from server
   const [loading, setLoading] = useState(false);
@@ -25,10 +26,7 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/blogs/login",
-        state
-      );
+      const response = await axios.post(`${serverUrl}/blogs/login`, state);
       const jwtData = JSON.stringify(response.data);
       localStorage.setItem("jwtData", jwtData);
       setLoading(false);
@@ -37,6 +35,7 @@ const Login = () => {
       setIsAuth(true);
       console.log(isAuth);
     } catch (err) {
+      console.log(err);
       console.log("Login=", err.messaage);
       setLoading(false);
       if (err.response) {

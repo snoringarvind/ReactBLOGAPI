@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useRouteMatch } from "react-router-dom";
+import { BlogsContext } from "./Context";
 import Form from "./Form/Form";
 
 const Create = () => {
   const [state, setState] = useState({ title: "", content: "" });
-  const url = "http://localhost:3000/api/blogs";
+  const { serverUrl } = useContext(BlogsContext);
+
+  const url = `${serverUrl}/blogs`;
   const method = "POST";
 
   const match = useRouteMatch().isExact;

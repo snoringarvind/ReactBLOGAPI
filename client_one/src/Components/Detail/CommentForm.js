@@ -10,8 +10,7 @@ const CommentForm = ({
   gotComments,
   setCommentsLoading,
 }) => {
-  const { isAuthValue } = useContext(BlogsContext);
-  const [setIsAuth] = isAuthValue;
+  const { serverUrl } = useContext(BlogsContext);
 
   const [state, setState] = useState({ comment: "" });
   const [loadingBtn, setLoadingBtn] = useState(false);
@@ -36,7 +35,7 @@ const CommentForm = ({
     try {
       const headers = { authorization: `Bearer ${jwt.jwt.token}` };
       await axios({
-        url: `http://localhost:3000/api/blog/${params.id}/comment`,
+        url: `${serverUrl}/blog/${params.id}/comment`,
         method: "POST",
         headers: headers,
         data: state,

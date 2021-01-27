@@ -6,6 +6,7 @@ import { BlogsContext } from "./Context";
 const Delete = () => {
   const { isAuthValue } = useContext(BlogsContext);
   const [setIsAuth] = isAuthValue;
+  const { serverUrl } = useContext(BlogsContext);
   // const [jwtData, setJwtData] = jwtDataValue;
 
   const params = useParams();
@@ -22,7 +23,7 @@ const Delete = () => {
     const axios_blogDetail = async () => {
       try {
         const response = await axios({
-          url: `http://localhost:3000/api/blog/${params.id}`,
+          url: `${serverUrl}/blog/${params.id}`,
           method: "GET",
         });
         console.log(response);
@@ -50,7 +51,7 @@ const Delete = () => {
       const headers = { authorization: `Bearer ${jwt.jwt.token}` };
 
       await axios({
-        url: `http://localhost:3000/api/blog/${params.id}`,
+        url: `${serverUrl}/blog/${params.id}`,
         headers: headers,
         method: "DELETE",
       });

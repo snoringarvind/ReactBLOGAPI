@@ -11,8 +11,7 @@ const CommentDisplay = ({
   setGotComments,
   setCommentsLoading,
 }) => {
-  const { isAuthValue } = useContext(BlogsContext);
-  const [isAuth, setIsAuth] = isAuthValue;
+  const { serverUrl } = useContext(BlogsContext);
   // const { jwtDataValue } = useContext(BlogsContext);
   const jwtData = JSON.parse(localStorage.getItem("jwtData"));
   const [deleteButton, setDeleteButton] = useState(null);
@@ -39,7 +38,7 @@ const CommentDisplay = ({
       const headers = { authorization: `Bearer ${jwt.jwt.token}` };
       setCommentsLoading(true);
       const response = await axios({
-        url: `http://localhost:3000/api/blog/${params.id}/comment/${comment._id}/guest`,
+        url: `${serverUrl}/blog/${params.id}/comment/${comment._id}/guest`,
         method: "DELETE",
         headers: headers,
       });

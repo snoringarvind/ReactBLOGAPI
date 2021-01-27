@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import uniqid from "uniqid";
 import "./List.css";
+import { BlogsContext } from "../Context";
 
 const List = () => {
+  const { serverUrl } = useContext(BlogsContext);
   const [blogList, setBlogList] = useState([]);
   const [error, setError] = useState("");
 
@@ -14,7 +16,7 @@ const List = () => {
   const axios_blogList = async () => {
     try {
       const response = await axios({
-        url: "http://localhost:3000/api/blogs",
+        url: `${serverUrl}/blogs`,
         method: "GET",
       });
       // console.log(response.data);

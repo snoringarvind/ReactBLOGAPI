@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import uniqid from "uniqid";
 import CommentForm from "./CommentForm";
 import CommentDisplay from "./CommentDisplay";
 import "./Detail.css";
+import { BlogsContext } from "../Context";
 
 const Detail = () => {
   const [blogDetail, setblogDetail] = useState("");
@@ -12,6 +13,7 @@ const Detail = () => {
   const params = useParams();
   const [error, setError] = useState("");
   const [commentError, setCommentError] = useState("");
+  const { serverUrl } = useContext(BlogsContext);
 
   const [comment, setComment] = useState([]);
 
@@ -22,7 +24,7 @@ const Detail = () => {
   const axios_blogDetail = async () => {
     try {
       const response = await axios({
-        url: `http://localhost:3000/api/blog/${params.id}`,
+        url: `${serverUrl}/blog/${params.id}`,
         method: "GET",
       });
       // console.log(response);
@@ -39,7 +41,7 @@ const Detail = () => {
     // console.log(params.id);
     try {
       const response = await axios({
-        url: `http://localhost:3000/api/blog/${params.id}/comment`,
+        url: `${serverUrl}/blog/${params.id}/comment`,
         method: "GET",
       });
       console.log(response);

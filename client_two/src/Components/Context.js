@@ -8,6 +8,9 @@ export const BlogsProvider = ({ children }) => {
   const [jwtData, setJwtData] = useState("");
   const [isAuth, setIsAuth] = useState(false);
   const [loginError, setLoginError] = useState("");
+  const [serverUrl, setServerUrl] = useState(
+    "https://snoringarvind-blog.herokuapp.com/api"
+  );
 
   //when the function returns the value, loading is set to false
   const [loading, setLoading] = useState(true);
@@ -22,7 +25,7 @@ export const BlogsProvider = ({ children }) => {
         const headers = { authorization: `Bearer ${jwt.jwt.token}` };
         const response = await axios({
           method: "POST",
-          url: "http://localhost:3000/api/blogs/is-guest-verified",
+          url: `${serverUrl}/blogs/is-guest-verified`,
           data: "",
           headers: headers,
         });
@@ -62,6 +65,7 @@ export const BlogsProvider = ({ children }) => {
           isAuthValue: [isAuth, setIsAuth],
           jwtDataValue: [jwtData, setJwtData],
           loginErrorValue: [loginError, setLoginError],
+          serverUrl: serverUrl,
         }}
       >
         {loading && "loading...."}

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import "./Signup.css";
 import uniqid from "uniqid";
 import Login from "../Login/Login";
 import { Redirect } from "react-router-dom";
+import { BlogsContext } from "../Context";
 
 const Signup = () => {
   const [state, setState] = useState({
@@ -18,6 +19,7 @@ const Signup = () => {
   const [error, setError] = useState("");
   const [loadingBtn, setLoadingBtn] = useState(false);
   const [iSsubmit, setIsSubmit] = useState(false);
+  const { serverUrl } = useContext(BlogsContext);
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
@@ -35,7 +37,7 @@ const Signup = () => {
 
     try {
       const response = await axios({
-        url: "http://localhost:3000/api/blogs/signup",
+        url: `${serverUrl}/blogs/signup`,
         method: "POST",
         data: state,
       });

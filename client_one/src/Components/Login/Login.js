@@ -10,6 +10,7 @@ const Login = () => {
   const [state, setState] = useState({ username: "", password: "" });
   const [errors, setErrors] = useState([]);
   const [error, setError] = useState("");
+  const { serverUrl } = useContext(BlogsContext);
 
   //when the user clicks on login button, the loading is set to true until we get a response from server
   const [loading, setLoading] = useState(false);
@@ -24,7 +25,7 @@ const Login = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/blogs/admin-login",
+        `${serverUrl}/blogs/admin-login`,
         state
       );
       const jwtData = JSON.stringify(response.data);

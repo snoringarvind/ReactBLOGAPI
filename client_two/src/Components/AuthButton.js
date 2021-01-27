@@ -21,9 +21,10 @@ const AuthButton = () => {
       history.push("/blogs");
       return;
     }
-    if (!isAuth && path === "/login") {
-      history.push("/signup");
-    } else {
+    // if (!isAuth && path === "/login") {
+    //   history.push("/signup");
+    // }
+    else {
       history.push(path);
       return;
     }
