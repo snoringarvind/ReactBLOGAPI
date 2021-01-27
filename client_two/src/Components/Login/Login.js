@@ -62,12 +62,6 @@ const Login = () => {
     }
   };
 
-  const redirect_user = () => {
-    console.log("hello");
-    window.location.reload();
-    return <Redirect to="/blogs" />;
-  };
-
   console.log(isAuth);
   console.log("hello");
 
@@ -108,7 +102,7 @@ const Login = () => {
               {loading ? "Loging-in" : "Login"}
             </button>
           </form>
-          {isAuth && redirect_user()}
+          {isAuth && window.location.reload() && <Redirect to="/blogs" />}
         </div>
       )}
     </div>

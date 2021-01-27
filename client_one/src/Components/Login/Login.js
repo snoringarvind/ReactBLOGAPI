@@ -60,10 +60,10 @@ const Login = () => {
     }
   };
 
-  const redirect_user = () => {
-    window.location.reload();
-    return <Redirect to="/blogs" />;
-  };
+  // const redirect_user = () => {
+  //   window.location.reload();
+  //   return <Redirect to="/blogs" />;
+  // };
 
   const displayError = () => {
     return <div className="error">{error}</div>;
@@ -101,7 +101,7 @@ const Login = () => {
               {loading ? "Loging-in" : "Login"}
             </button>
           </form>
-          {isAuth && redirect_user()}
+          {isAuth && window.location.reload() && <Redirect to="/blogs" />}
         </div>
       )}
     </div>
