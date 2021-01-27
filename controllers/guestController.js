@@ -41,7 +41,7 @@ exports.signup_post = [
     .isLength({ min: 3 })
     .withMessage("username cannot be less than 3 characters")
     .isLength({ max: 10 })
-    .withMessage("username cannot be more than 10 characters")
+    .withMessage("username cannot be more than 25 characters")
     .escape(),
 
   body("password", "password cannot be empty")
@@ -58,6 +58,7 @@ exports.signup_post = [
     const errors = validationResult(req);
 
     const user = new User({
+      admin: true,
       fname: req.body.fname,
       lname: req.body.lname,
       email: req.body.email,

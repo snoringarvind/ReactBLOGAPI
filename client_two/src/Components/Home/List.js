@@ -37,7 +37,7 @@ const List = () => {
   const displayBlogs = () => {
     // console.log(blogList);
     if (blogList.length == 0) {
-      return <div>No Blogs. You can add blogs by clicking on create</div>;
+      return <div>No blogs to display.</div>;
     } else {
       let arr = [];
       for (let i = 0; i < blogList.length; i++) {

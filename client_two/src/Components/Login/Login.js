@@ -76,7 +76,7 @@ const Login = () => {
         displayError()
       ) : (
         <div className="Login">
-          <h1 className="head">Login To Continue.</h1>
+          <h1 className="head">Login Page.</h1>
           <form>
             <div className="form-group">
               <label htmlFor="username">Username:</label>
@@ -91,7 +91,7 @@ const Login = () => {
             <div className="form-group">
               <label htmlFor="password">Password:</label>
               <input
-                type="text"
+                type="password"
                 id="password"
                 placeholder="Enter Password"
                 name="password"

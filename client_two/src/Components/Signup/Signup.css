@@ -49,26 +49,29 @@
 @media screen and (max-device-width: 1000px) {
   .signup-container .Signup {
     flex-basis: 100%;
-  }
-
-  .signup-container {
-    background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
-    border: 1px solid red;
-    height: 100vh;
-    margin-top: 0;
-  }
-}
-
-@media screen and (max-width: 700px) {
-  .signup-container .Signup {
-    flex-basis: 100%;
+    box-shadow: none;
     margin-top: 0;
     margin-bottom: 0;
   }
 
   .signup-container {
     background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
-    border: 1px solid red;
-    height: 100vh;
+    /* border: 1px solid red; */
+    min-height: 93vh;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .signup-container .Signup {
+    flex-basis: 100%;
+    box-shadow: none;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .signup-container {
+    background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+    /* border: 1px solid red; */
+    min-height: 93vh;
   }
 }

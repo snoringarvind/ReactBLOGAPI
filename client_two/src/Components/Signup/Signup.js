@@ -32,6 +32,7 @@ const Signup = () => {
 
     if (state.password !== state.confirmPassword) {
       setErrors({ msg: "Passwords don't match :(" });
+      setLoadingBtn(false);
       return;
     }
 
@@ -118,7 +119,7 @@ const Signup = () => {
               <input
                 type="text"
                 id="username"
-                placeholder="Enter a unique username"
+                placeholder="Enter a username"
                 name="username"
                 onChange={changeHandler}
               />
@@ -126,7 +127,7 @@ const Signup = () => {
             <div className="form-group">
               <label htmlFor="password">Password:</label>
               <input
-                type="text"
+                type="password"
                 id="password"
                 placeholder="Enter Password"
                 name="password"
@@ -136,7 +137,7 @@ const Signup = () => {
             <div className="form-group">
               <label htmlFor="confirmPassword">Confirm Password:</label>
               <input
-                type="text"
+                type="password"
                 id="confirmPassword"
                 placeholder="Enter above password again"
                 name="confirmPassword"
