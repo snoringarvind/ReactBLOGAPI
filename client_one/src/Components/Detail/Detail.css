@@ -11,7 +11,7 @@
   text-decoration: underline;
 }
 
-.blog {
+.Detail .blog {
   box-shadow: 1px 1px 5px lightgray, -1px -1px 5px lightgray,
     1px 1px 5px lightgray, -1px -1px 5px lightgray;
 

@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { Redirect, useHistory, useParams } from "react-router-dom";
-import { BlogsContext } from "./Context";
+import { BlogsContext } from "../Context";
+import "./Delete.css";
 
 const Delete = () => {
   const { isAuthValue } = useContext(BlogsContext);
@@ -76,7 +77,7 @@ const Delete = () => {
           displayError()
         ) : (
           <>
-            <div className="Detail">
+            <div className="detail">
               <div className="title">{blog.title}</div>
               <div className="content">{blog.content}</div>
             </div>

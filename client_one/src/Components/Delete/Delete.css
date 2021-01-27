@@ -1,0 +1,47 @@
+.Delete {
+  margin: 20px;
+  /* border: 1px solid black; */
+  /* padding: 20px; */
+}
+
+.Delete .title {
+  color: black;
+  font-size: 1.3rem;
+  font-weight: 450;
+  font-style: italic;
+  font-family: cursive;
+  text-decoration: underline;
+}
+
+.Delete .detail {
+  box-shadow: 1px 1px 5px lightgray, -1px -1px 5px lightgray,
+    1px 1px 5px lightgray, -1px -1px 5px lightgray;
+
+  border-radius: 4px;
+  border: 1px solid;
+  padding: 20px;
+  background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+}
+
+.Delete .content {
+  text-indent: 30px;
+  margin: 10px 20px;
+  text-align: justify;
+  color: rgb(48, 48, 48);
+}
+
+.Delete .delete-btn button {
+  background-color: red;
+  outline: 1px solid red;
+  /* margin: 20px; */
+  font-size: 1rem;
+  padding: 8px 14px;
+  font-weight: 540;
+  color: white;
+  border: 1px solid white;
+  border-radius: 3px;
+}
+
+.Delete .confirm-delete-msg {
+  font-weight: bold;
+}

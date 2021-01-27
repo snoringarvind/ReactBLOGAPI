@@ -16,10 +16,12 @@
 .form-container .Form {
   background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
   flex-basis: 80%;
-  border: 1px solid green;
+  /* border: 1px solid green; */
   padding: 20px;
   border-radius: 4px;
   position: relative;
+  box-shadow: 1px 1px 5px lightgray, -1px -1px 5px lightgray,
+    1px 1px 5px lightgray, -1px -1px 5px lightgray;
   /* height: 100%; */
 }
 

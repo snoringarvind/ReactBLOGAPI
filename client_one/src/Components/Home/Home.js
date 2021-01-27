@@ -9,7 +9,7 @@ import Logout from "../Logout";
 import Detail from "../Detail/Detail";
 import Update from "../Update";
 import Create from "../Create";
-import Delete from "../Delete";
+import Delete from "../Delete/Delete";
 
 const Home = () => {
   const { isAuthValue } = useContext(BlogsContext);
