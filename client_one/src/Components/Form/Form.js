@@ -13,6 +13,8 @@ const Form = ({ state, setState, method, url }) => {
   const [loadingBtn, setLoadingBtn] = useState(false);
   const [error, setError] = useState("");
 
+  console.log(history);
+
   const changeHandler = (e) => {
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
@@ -76,6 +78,14 @@ const Form = ({ state, setState, method, url }) => {
     return <div className="error">{error}</div>;
   };
 
+  const showLoadingButton = () => {
+    if (history.location.pathname === "/create") {
+      return <>{loadingBtn ? "Creating Blog" : "Create Blog"}</>;
+    } else {
+      return <>{loadingBtn ? "Updating Blog" : "Update Blog"}</>;
+    }
+  };
+
   return (
     <div className="form-container">
       {error ? (
@@ -109,7 +119,7 @@ const Form = ({ state, setState, method, url }) => {
             <div className="error">{displayErrors()}</div>
 
             <button className="submit-btn" onClick={submitHandler}>
-              {loadingBtn ? "Submitting..." : "CreateBLog"}
+              {showLoadingButton()}
             </button>
           </form>
         </div>
