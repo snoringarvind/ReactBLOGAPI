@@ -10,14 +10,14 @@ exports.blog_create_post = [
     .isLength({ min: 1 })
     .withMessage("title cannot be empty")
     .isLength({ max: 50 })
-    .withMessage("title cannot be larger than 50 characters")
+    .withMessage("title cannot be larger than 200 characters")
     .escape(),
   body("content")
     .trim()
     .isLength({ min: 10 })
     .withMessage("content cannot be less than 10 characters")
     .isLength({ max: 1000 })
-    .withMessage("content cannot be larger than 1000 characters")
+    .withMessage("content cannot be larger than 50000 characters")
     .escape(),
   (req, res, next) => {
     // console.log("okay", req.body);
