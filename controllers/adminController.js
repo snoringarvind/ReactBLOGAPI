@@ -17,8 +17,7 @@ exports.blog_create_post = [
     .isLength({ min: 10 })
     .withMessage("content cannot be less than 10 characters")
     .isLength({ max: 50000 })
-    .withMessage("content cannot be larger than 50000 characters")
-    .escape(),
+    .withMessage("content cannot be larger than 50000 characters"),
   (req, res, next) => {
     // console.log("okay", req.body);
     const errors = validationResult(req);

@@ -55,14 +55,15 @@
   transform: scale(1.009, 1.009);
 }
 
-/* @media screen and (max-width: 700px) {
-  .List .card {
-    flex-basis: 100%;
+@media screen and (max-width: 700px) {
+  .List {
+    display: block;
+    /* width: 100%; */
   }
-} */
-
+}
 @media screen and (max-device-width: 1000px) {
-  .List .card {
-    flex-basis: 100%;
+  .List {
+    /* width: 100%; */
+    display: block;
   }
 }
