@@ -40,8 +40,8 @@ exports.signup_post = [
     .trim()
     .isLength({ min: 3 })
     .withMessage("username cannot be less than 3 characters")
-    .isLength({ max: 10 })
-    .withMessage("username cannot be more than 25 characters")
+    .isLength({ max: 30 })
+    .withMessage("username cannot be more than 30 characters")
     .escape(),
 
   body("password", "password cannot be empty")
