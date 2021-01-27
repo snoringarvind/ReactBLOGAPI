@@ -41,14 +41,10 @@ const List = () => {
       for (let i = 0; i < blogList.length; i++) {
         let x = (
           <div className="card" key={uniqid()}>
-            <div className="card-border">
-              <Link to={`/blog/${blogList[i]._id}`} className="card-link">
-                <div className="title">{blogList[i].title}</div>
-                <div className="content list-content">
-                  {blogList[i].content}
-                </div>
-              </Link>
-            </div>
+            <Link to={`/blog/${blogList[i]._id}`} className="card-link">
+              <div className="title">{blogList[i].title}</div>
+              <div className="content list-content">{blogList[i].content}</div>
+            </Link>
           </div>
         );
         arr.push(x);

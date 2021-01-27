@@ -14,13 +14,21 @@
   text-decoration: underline;
 }
 
+.List .card a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgb(134, 134, 134);
+  padding: 15px;
+  border-radius: 4px;
+}
 .List .card {
   /* margin: 15px 0 20px 0; */
   margin: 1%;
   box-shadow: 1px 1px 5px lightgray, -1px -1px 5px lightgray,
     1px 1px 5px lightgray, -1px -1px 5px lightgray;
   /* border-radius: 4px; */
-  padding: 20px;
+  padding: 5px;
   background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
   height: 33.5vh;
   flex-basis: 48%;
