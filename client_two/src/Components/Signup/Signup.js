@@ -16,7 +16,7 @@ const Signup = () => {
   });
   const [errors, setErrors] = useState([]);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState("");
+  const [loadingBtn, setLoadingBtn] = useState(false);
   const [iSsubmit, setIsSubmit] = useState(false);
 
   const changeHandler = (e) => {
@@ -26,8 +26,7 @@ const Signup = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("submitting");
-    console.log(state);
+    setLoadingBtn(true);
 
     if (state.password !== state.confirmPassword) {
       setErrors({ msg: "Passwords don't match :(" });
@@ -43,12 +42,14 @@ const Signup = () => {
       setErrors([]);
       setError("");
       setIsSubmit(true);
+      setLoadingBtn(false);
     } catch (err) {
       if (err.response) {
         setErrors(err.response.data);
       } else {
         setError(err.message);
       }
+      setLoadingBtn(false);
     }
   };
 
@@ -142,7 +143,7 @@ const Signup = () => {
             </div>
             <div className="errors">{displayErrors()}</div>
             <button className="signup-btn" onClick={submitHandler}>
-              {loading ? "Signing-you-up" : "Signup"}
+              {loadingBtn ? "Signing-you-up" : "Signup"}
             </button>
           </form>
           {iSsubmit && <Redirect to="/login" />}
