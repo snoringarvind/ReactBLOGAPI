@@ -38,9 +38,10 @@ const Login = () => {
       setLoading(false);
       if (err.response) {
         setErrors(err.response.data);
+      } else {
+        setError(err.messaage);
       }
       setIsAuth(false);
-      setError(err.messaage);
     }
   };
 

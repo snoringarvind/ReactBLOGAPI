@@ -24,7 +24,7 @@ const Form = ({ state, setState, method, url }) => {
     const jwt = JSON.parse(localStorage.getItem("jwtData"));
 
     if (jwt == null) {
-      setIsAuth(false);
+      window.location.reload();
     }
 
     try {
@@ -50,8 +50,9 @@ const Form = ({ state, setState, method, url }) => {
       setLoadingBtn(false);
       if (err.response.data) {
         setErrors(err.response.data);
+      } else {
+        setError(err.message);
       }
-      setError(err.message);
     }
   };
 

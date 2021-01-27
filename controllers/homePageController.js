@@ -1,6 +1,7 @@
 const Blog = require("../models/Blog");
 
 exports.blog_list = (req, res, next) => {
+  console.log("innnnnnnnnnnnnnn");
   Blog.find({}, (err, result) => {
     if (err) {
       console.log(err.message);

@@ -11,6 +11,7 @@ const Detail = () => {
   const [loading, setLoading] = useState(true);
   const params = useParams();
   const [error, setError] = useState("");
+  const [commentError, setCommentError] = useState("");
 
   const [comment, setComment] = useState([]);
 
@@ -46,9 +47,9 @@ const Detail = () => {
       // console.log(response.data);
       setComment(response.data);
       setCommentsLoading(false);
-      setError("");
+      setCommentError("");
     } catch (err) {
-      setError(err.message);
+      setCommentError(err.message);
       setCommentsLoading(false);
       console.log("Detail=", err.message);
     }
@@ -66,28 +67,27 @@ const Detail = () => {
     return <div className="error">{error}</div>;
   };
 
+  const displayCommentError = () => {
+    return <div className="comment-error">{commentError}</div>;
+  };
   const displayBlog = () => {
     return (
       <div className="blog">
-        {error ? (
-          displayError()
-        ) : (
-          <>
-            {" "}
-            <div className="title">{blogDetail.title}</div>
-            <div className="content">{blogDetail.content}</div>
-            <div className="update-btn">
-              <Link to={`/blog/${blogDetail._id}/update`}>
-                <button>Update</button>
-              </Link>
-            </div>
-            <div className="delete-btn">
-              <Link to={`/blog/${blogDetail._id}/delete`}>
-                <button>Delete</button>
-              </Link>
-            </div>
-          </>
-        )}
+        <>
+          {" "}
+          <div className="title">{blogDetail.title}</div>
+          <div className="content">{blogDetail.content}</div>
+          <div className="update-btn">
+            <Link to={`/blog/${blogDetail._id}/update`}>
+              <button>Update</button>
+            </Link>
+          </div>
+          <div className="delete-btn">
+            <Link to={`/blog/${blogDetail._id}/delete`}>
+              <button>Delete</button>
+            </Link>
+          </div>
+        </>
       </div>
     );
   };
@@ -108,7 +108,9 @@ const Detail = () => {
       {commentsLoading && "comments loading...."}
 
       {!commentsLoading &&
-        (comment.length > 0 ? (
+        (commentError ? (
+          displayCommentError()
+        ) : comment.length > 0 ? (
           <div className="comments-container">
             <div className="comments">
               {comment.map((value, index) => {

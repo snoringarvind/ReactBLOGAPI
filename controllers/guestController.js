@@ -37,20 +37,20 @@ exports.signup_post = [
     });
 
     if (!errors.isEmpty()) {
-      return res.json(errors);
+      return res.status(400).json(errors.array());
     } else {
       User.findOne({ username: req.body.username }, (err, theUser) => {
         console.log(theUser);
         if (err) return res.status(500).json({ msg: err.message });
         if (theUser != null) {
-          return res.status(406).json({
+          return res.status(400).json({
             msg:
-              "A user with this username already exists. Please chose a different username.",
+              "A user with this username already exists. Please chose a different username",
           });
         } else {
           user.save((err) => {
             if (err) {
-              return res.json({ msg: err.message });
+              return res.staturs(500).json({ msg: err.message });
             } else {
               return res.json(user);
             }
@@ -101,7 +101,7 @@ exports.comment_create_post = [
     // console.log(("comment=", comment));
     // console.log(errors.array());
     if (!errors.isEmpty()) {
-      res.status(400).json(errors.array());
+      return res.status(400).json(errors.array());
     } else {
       comment.save((err) => {
         if (err) return res.json({ msg: err.message });

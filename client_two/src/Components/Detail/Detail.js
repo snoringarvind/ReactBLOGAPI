@@ -11,6 +11,7 @@ const Detail = () => {
   const [loading, setLoading] = useState(true);
   const params = useParams();
   const [error, setError] = useState("");
+  const [commentError, setCommentError] = useState("");
 
   const [comment, setComment] = useState([]);
 
@@ -45,9 +46,10 @@ const Detail = () => {
       // console.log(response.data);
       setComment(response.data);
       setCommentsLoading(false);
+      setCommentError("");
     } catch (err) {
       setCommentsLoading(false);
-      setError(err.message);
+      setCommentError(err.message);
       console.log("Detail=", err.message);
     }
   };
@@ -62,6 +64,10 @@ const Detail = () => {
 
   const displayError = () => {
     return <div className="error">{error}</div>;
+  };
+
+  const displayCommentError = () => {
+    return <div className="comment-error">{commentError}</div>;
   };
 
   const displayBlog = () => {
@@ -89,8 +95,8 @@ const Detail = () => {
       {commentsLoading && "comments loading...."}
 
       {!commentsLoading &&
-        (error ? (
-          displayError()
+        (commentError ? (
+          displayCommentError()
         ) : comment.length > 0 ? (
           <div className="comments-container">
             <div className="comments">

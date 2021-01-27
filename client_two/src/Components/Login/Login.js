@@ -4,6 +4,7 @@ import uniqid from "uniqid";
 import { Redirect, useHistory, useLocation } from "react-router-dom";
 import "./Login.css";
 import { BlogsContext } from "../Context";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [isAuth, setIsAuth] = useState(false);
@@ -40,9 +41,10 @@ const Login = () => {
       setLoading(false);
       if (err.response) {
         setErrors(err.response.data);
+      } else {
+        setError(err.messaage);
       }
       setIsAuth(false);
-      setError(err.messaage);
     }
   };
 
@@ -98,10 +100,21 @@ const Login = () => {
               />
             </div>
             <div className="errors">{displayErrors()}</div>
-            <button className="login-btn" type="submit" onClick={submitHandler}>
-              {loading ? "Loging-in" : "Login"}
-            </button>
+            <div className="buttons">
+              <button
+                className="login-btn"
+                type="submit"
+                onClick={submitHandler}
+              >
+                {loading ? "Loging-in" : "Login"}
+              </button>
+
+              <button className="signup-btn">
+                <Link to="/signup">Signup</Link>
+              </button>
+            </div>
           </form>
+
           {isAuth && window.location.reload() && <Redirect to="/blogs" />}
         </div>
       )}

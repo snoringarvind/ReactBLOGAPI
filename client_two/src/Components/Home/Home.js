@@ -13,6 +13,7 @@ import List from "./List";
 import Logout from "../Logout";
 import Detail from "../Detail/Detail";
 import Login from "../Login/Login";
+import Signup from "../Signup/Signup";
 
 const Home = () => {
   const { isAuthValue } = useContext(BlogsContext);
@@ -45,9 +46,14 @@ const Home = () => {
           )}
 
           {!isAuth && (
-            <Route path="/login">
-              <Login />
-            </Route>
+            <>
+              <Route path="/login">
+                <Login />
+              </Route>
+              <Route path="/signup">
+                <Signup />
+              </Route>
+            </>
           )}
         </Switch>
       </Router>

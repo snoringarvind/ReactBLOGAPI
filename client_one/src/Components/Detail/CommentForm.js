@@ -29,7 +29,8 @@ const CommentForm = ({
     setLoadingBtn(true);
     const jwt = JSON.parse(localStorage.getItem("jwtData"));
     if (jwt == null) {
-      setIsAuth(false);
+      window.location.reload();
+      return;
     }
 
     try {
@@ -53,8 +54,9 @@ const CommentForm = ({
       console.log("Detail=", err.message);
       if (err.response) {
         setErrors(err.response.data);
+      } else {
+        setError(err.message);
       }
-      setError(err.message);
       setLoadingBtn(false);
     }
   };

@@ -43,7 +43,7 @@ const Delete = () => {
 
     const jwt = JSON.parse(localStorage.getItem("jwtData"));
     if (jwt == null) {
-      setIsAuth(false);
+      window.location.reload();
     }
 
     try {

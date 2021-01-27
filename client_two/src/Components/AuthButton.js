@@ -4,17 +4,28 @@ import { BlogsContext } from "./Context";
 // import Navigation from "./Navigation";
 
 const AuthButton = () => {
-  // const { isAuthValue } = useContext(BlogsContext);
-  // const [isAuth, setIsAuth] = isAuthValue;
+  const { isAuthValue } = useContext(BlogsContext);
+  const [isAuth, setIsAuth] = isAuthValue;
 
   const PushHistory = () => {
     const history = useHistory();
     const path = history.location.pathname;
     console.log(path);
-    if (path === "/logout" || path === "/login") {
+    console.log(isAuth);
+
+    if (!isAuth && path === "/logout") {
       history.push("/blogs");
+      return;
+    }
+    if (isAuth && (path === "/login" || path === "/signup")) {
+      history.push("/blogs");
+      return;
+    }
+    if (!isAuth && path === "/login") {
+      history.push("/signup");
     } else {
       history.push(path);
+      return;
     }
   };
 

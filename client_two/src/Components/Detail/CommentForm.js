@@ -35,10 +35,6 @@ const CommentForm = ({
     setLoadingBtn(true);
     const jwt = JSON.parse(localStorage.getItem("jwtData"));
 
-    // if (jwt == null) {
-    //   setIsAuth(false);
-    // }
-
     if (!isAuth) {
       setnotLogged("Please login inorder to comment");
       setLoadingBtn(false);
@@ -70,8 +66,9 @@ const CommentForm = ({
       setLoadingBtn(false);
       if (err.response) {
         setErrors(err.response.data);
+      } else {
+        setError(err.message);
       }
-      setError(err.message);
     }
   };
 

@@ -18,7 +18,7 @@ const CommentDisplay = ({
     e.preventDefault();
     const jwt = JSON.parse(localStorage.getItem("jwtData"));
     if (jwt == null) {
-      setIsAuth(false);
+      window.location.reload();
     }
     console.log(comment._id);
 
@@ -34,7 +34,7 @@ const CommentDisplay = ({
       setCommentsLoading(true);
       setError("");
     } catch (err) {
-      console.log("CommentDisplay=", err.message);
+      console.log("CommentDisplay=", err.response);
       setError(err.message);
     }
   };
