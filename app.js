@@ -15,7 +15,13 @@ const blogsRouter = require("./routes/blogs");
 
 const app = express();
 
-app.use(cors({ origin: "https://snoringarvind.github.io" }));
+app.use(
+  cors({
+    origin: "https://snoringarvind.github.io",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 app.use(compression());
 app.use(helmet());
 
