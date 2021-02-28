@@ -9,7 +9,7 @@ export const BlogsProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false);
   const [loginError, setLoginError] = useState("");
   const [serverUrl, setServerUrl] = useState(
-    "https://snoringarvind-blog.herokuapp.com/api"
+    "https://odin-blog-site.herokuapp.com/api"
   );
 
   //when the function returns the value, loading is set to false
