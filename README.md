@@ -8,5 +8,9 @@
 -username: snorignarvind
 </div>
 <div>-password: BillMusk12</div>
+<p>
+<div>[Link to blog-guest-github] (https://github.com/snoringarvind/arvind-blog-guest)</div></p>
 
-<div>[Link to blog-guest-site] (https://github.com/snoringarvind/arvind-blog-guest)</div>
+
+<p>
+<div>[Link to blog-admin-github] (https://github.com/snoringarvind/arvind-blog-admin)</div></p>
