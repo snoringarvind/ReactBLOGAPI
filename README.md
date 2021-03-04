@@ -9,4 +9,4 @@
 </div>
 <div>-password: BillMusk12</div>
 
-<div>[Link to blog-guest-site]: https://github.com/snoringarvind/arvind-blog-guest</div>
+<div>[Link to blog-guest-site]: (https://github.com/snoringarvind/arvind-blog-guest)</div>
