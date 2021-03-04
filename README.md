@@ -6,7 +6,7 @@
 <p>The password and username for admin-site are as follows.</p>
 <div>
 -username: snorignarvind
--password: BillMusk12
 </div>
+<div>-password: BillMusk12</div>
 
 [Link to blog-guest-site]: https://github.com/snoringarvind/arvind-blog-guest
