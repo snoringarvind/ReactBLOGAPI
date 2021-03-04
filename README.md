@@ -8,4 +8,4 @@ The password and username for admin-site are as follows.
 -username: snorignarvind
 -password: BillMusk12
 
-[Link to blog-guest-site] (https://github.com/snoringarvind/arvind-blog-guest)
+[Link to blog-guest-site]: https://github.com/snoringarvind/arvind-blog-guest
